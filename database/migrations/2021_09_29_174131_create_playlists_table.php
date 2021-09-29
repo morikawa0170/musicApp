@@ -15,7 +15,15 @@ class CreatePlaylistsTable extends Migration
     {
         Schema::create('playlists', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('playlistId');
+            $table->string('playlistName');
+            $table->string('owner');
+            $table->string('description');
+            $table->string('img');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
