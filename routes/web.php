@@ -16,8 +16,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::resource('playlists','PlaylistController');
 Route::post('/mypage/{id}','PlaylistController@mypage')->name('mypage');
+Route::post('/mypage/show/{id}','PlaylistController@show')->name('mypage.show');
+Route::get('/playlists','PlaylistController@index')->name('playlists.index');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 

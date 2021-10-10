@@ -72,7 +72,7 @@
                                             +"<input type='hidden' name='_token' value='{{ csrf_token() }}'>";
                                 
                                 html += playlistName+"</a></td><td><p style='font-size: 14px;'>"+description+"</p></td>"
-                                        +"<td style='text-align:center;'><form action='/musicApp/public/mypage/show/"+playlistId+"' method='POST'>"+button+"</form></td></tr>";
+                                        +"<td style='text-align:center;'><form action='/mypage/show/"+playlistId+"' method='POST'>"+button+"</form></td></tr>";
                             }else {
                                 continue;
                             }

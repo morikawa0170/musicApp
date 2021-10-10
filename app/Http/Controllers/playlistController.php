@@ -31,7 +31,7 @@ class PlaylistController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -51,9 +51,33 @@ class PlaylistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $playlisId = $request->playlistId;
+        $playlist = Playlist::where('playlistId',$playlisId)->first();
+        // dd($request);
+        $state = '';
+        $playlistC = Playlist::where('playlistId',$playlisId)->count();
+        
+        if($playlistC >= 1) {
+            $state = 'registered';
+            $id = $playlist->id;
+        } else {
+            $id = null;
+        }
+
+        $data = [
+                "id" => $id,
+                "spotifyId" => $request-> spotifyId,
+                "playlistId" => $request-> playlistId,
+                "playlistName" => $request-> playlistName,
+                "owner" => $request-> owner,
+                "username" => $request-> username,
+                "description" => $request-> description,
+                "img" => $request-> img,
+                'state' => $state
+            ];
+        return view('playlists.show',$data);
     }
 
     /**
@@ -93,6 +117,6 @@ class PlaylistController extends Controller
     public function mypage()
     {
         
-        return view('mypage');
+        return view('playlists.mypage');
     }
 }
