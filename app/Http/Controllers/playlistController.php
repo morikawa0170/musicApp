@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use App\Playlist;
 use Auth;
 
-class playlistController extends Controller
+class PlaylistController extends Controller
 {
     public function __construct()
     {
-        
+        $this->middleware('auth');
     }
 
     /**
@@ -88,5 +88,11 @@ class playlistController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function mypage()
+    {
+        
+        return view('mypage');
     }
 }

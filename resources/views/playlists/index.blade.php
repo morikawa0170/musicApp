@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('title')
+マイページ
+@endsection
+
 @section('css')
    .table td{ 
       vertical-align: middle; 
