@@ -42,7 +42,11 @@ class PlaylistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $playlist = new Playlist;
+        $form = $request->all();
+        unset($form['_token']);
+        $playlist->fill($form)->save();
+        return redirect()->route('playlists.index');
     }
 
     /**
@@ -57,27 +61,13 @@ class PlaylistController extends Controller
         $playlist = Playlist::where('playlistId',$playlisId)->first();
         // dd($request);
         $state = '';
-        $playlistC = Playlist::where('playlistId',$playlisId)->count();
+        $playlistC = $playlist->count();
         
         if($playlistC >= 1) {
             $state = 'registered';
-            $id = $playlist->id;
-        } else {
-            $id = null;
         }
 
-        $data = [
-                "id" => $id,
-                "spotifyId" => $request-> spotifyId,
-                "playlistId" => $request-> playlistId,
-                "playlistName" => $request-> playlistName,
-                "owner" => $request-> owner,
-                "username" => $request-> username,
-                "description" => $request-> description,
-                "img" => $request-> img,
-                'state' => $state
-            ];
-        return view('playlists.show',$data);
+        return view('playlists.show',compact('playlist','state'));
     }
 
     /**
@@ -100,7 +90,12 @@ class PlaylistController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $playlist = Playlist::find($id);
+        $form = $request->all();
+        unset($form['_token']);
+        $playlist->fill($form)->save();
+        
+        return redirect()->route('playlists.index');
     }
 
     /**

@@ -28,7 +28,8 @@
                            <p style="font-size: 14px;">{{ $playlist -> description }}</p>
                         </td>
                         <td class="w-25" style="text-align:center;">
-                           <p><a href="https://open.spotify.com/user/{{ $playlist->spotifyId}}">{{ $playlist -> owner }}</a></p>
+                           {{ $playlist->spotifyId}}
+                           <p><a href="https://open.spotify.com/user/{{ $playlist->user->spotify_id}}">{{ $playlist -> owner }}</a></p>
                         </td>
                   </tr>
                @endforeach    
