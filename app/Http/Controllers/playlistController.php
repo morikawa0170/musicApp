@@ -106,7 +106,8 @@ class PlaylistController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Playlist::find($id)->delete();
+        return redirect()->route('playlists.index');
     }
 
     public function mypage()

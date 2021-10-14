@@ -25,7 +25,7 @@
                      @csrf
                      <input type="submit" value="更新" class="btn btn-primary ml-3 mr-2" onClick="return updateclick()">
                   </form>
-                  <form action="/playlists/delete" method="POST">
+                  <form action="{{ route('playlists.delete',$playlist->id) }}" method="POST">
                      @csrf
                      <input type="hidden" name="playlistId" value="{{$playlist->playlistId}}" id="delete">
                      <input type="submit" class="btn btn-danger" value="削除" onClick="return dltclick()">
