@@ -41,7 +41,7 @@
                     ajax2.responseType = "json";
                     ajax2.addEventListener("load", function(){ // loadイベントを登録します。
                         var html="<table class='table'>"
-                        html+="<thead class='thead-light'><tr><th class='w-25'>タイトル</th><th style='width: 70%;'>説明</th><th style='text-align:center; width: 5%;'>詳細</th></tr></thead>"
+                        html+="<thead class='thead-light'><tr><th class='w-25'>タイトル</th><th style='width:70%;'>説明</th><th style='text-align:center; width:5%;'>詳細</th></tr></thead>"
                         var json2 = this.response;
                         //
                         for (var i=0;i<json2.items.length;i++) {
@@ -72,7 +72,9 @@
                                             +"<input type='hidden' name='_token' value='{{ csrf_token() }}'>";
                                 
                                 html += playlistName+"</a></td><td><p style='font-size: 14px;'>"+description+"</p></td>"
-                                        +"<td style='text-align:center;'><form action='/mypage/show/"+playlistId+"' method='POST'>"+button+"</form></td></tr>";
+                                        +"<td style='text-align:center;'>"
+                                            +"<form action='/mypage/"+playlistId+"/show' method='POST'>"+button+"</form>"
+                                        +"</td></tr>";
                             }else {
                                 continue;
                             }

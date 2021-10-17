@@ -20,7 +20,7 @@
                @foreach ($playlists as $playlist)
                   <tr>
                         <td class="w-25">
-                           <a href="/musicApp/public/chat/{{ $playlist -> playlistId }}">
+                           <a href="{{ route('comments.show', $playlist -> id) }}">
                               <img src="{{ $playlist -> img }}" width="100px" height="100px'">
                            {{ $playlist -> playlistName }}</a>
                         </td>

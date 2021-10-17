@@ -24,15 +24,6 @@ class PlaylistController extends Controller
         return view('playlists.index', compact('playlists'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-       
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -57,28 +48,54 @@ class PlaylistController extends Controller
      */
     public function show(Request $request)
     {
+        // $playlistC = Playlist::where('playlistId', $request->playlistId)->count();
+        // $data = [
+        //     "id" => $id,
+        //     "spotifyId" => $request-> spotifyId,
+        //     "playlistId" => $request-> playlistId,
+        //     "playlistName" => $request-> playlistName,
+        //     "owner" => $request-> owner,
+        //     "username" => $request-> username,
+        //     "description" => $request-> description,
+        // ];
+        // // dd($playlist);
+
+        // if($playlistC = 1) {
+        //     $state = 'registered';
+        //     return view('playlists.show',compact('data','state'));
+        // }else{
+        //     return view('playlists.show',compact('data'));   
+        // }
+
         $playlisId = $request->playlistId;
         $playlist = Playlist::where('playlistId',$playlisId)->first();
         // dd($request);
         $state = '';
-        $playlistC = $playlist->count();
+        $playlistC = Playlist::where('playlistId',$playlisId)->count();
         
         if($playlistC >= 1) {
             $state = 'registered';
+            $id = $playlist->id;
+        } else {
+            $id = null;
         }
 
-        return view('playlists.show',compact('playlist','state'));
-    }
+        $data = [
+                "id" => $id,
+                "spotifyId" => $request-> spotifyId,
+                "playlistId" => $request-> playlistId,
+                "playlistName" => $request-> playlistName,
+                "owner" => $request-> owner,
+                "username" => $request-> username,
+                "description" => $request-> description,
+                "img" => $request-> img,
+                'state' => $state
+            ];
+        
+        return view('playlists.show',$data);
+        
+        
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -110,9 +127,8 @@ class PlaylistController extends Controller
         return redirect()->route('playlists.index');
     }
 
-    public function mypage()
+    public function mypage(Request $request)
     {
-        
         return view('playlists.mypage');
     }
 }
