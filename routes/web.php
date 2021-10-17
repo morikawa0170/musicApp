@@ -26,7 +26,7 @@ Route::post('/playlists/{id}/delete','PlaylistController@destroy')->name('playli
 
 Route::post('/comments','CommentController@store')->name('comments.store');
 Route::get('/comments/{id}/show','CommentController@show')->name('comments.show');
-Route::get('/comments/{id}/commentAjax','CommentController@commentAjax')->name('comments.Ajax ');
+Route::get('/comments/{id}/commentAjax','CommentController@commentAjax')->name('comments.Ajax');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
