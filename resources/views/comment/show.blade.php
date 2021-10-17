@@ -29,7 +29,7 @@
                var name = json[i].name;
                var comment = json[i].comment;
                var id = json[i].id;
-               var form = '<form action="/musicApp/public/chat/delete" method="post">'
+               var form = '<form action="{{ route('comments.delete', $playlist->id) }}" method="post">'
                            +"<input type='submit' class='btn btn-link' value='削除' onClick='return delCheck()'>"
                            +"<input type='hidden' name='id' value='"+ id +"'>"
                            +"<input type='hidden' name='title' value="+ "{{ $playlist->id }}" +">"
@@ -58,7 +58,7 @@
             }
          }, false);
       }
-      // var handle = setInterval(recvAJAX, 500);
+      // var handle = setInterval(recvAJAX, 200);
       var handle = recvAJAX();
       function delCheck(){
          var result = confirm('本当に削除してよろしいですか？');
