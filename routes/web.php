@@ -17,12 +17,16 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::post('/mypage/{id}','PlaylistController@mypage')->name('mypage');
-Route::post('/mypage/show/{id}','PlaylistController@show')->name('mypage.show');
+Route::post('/mypage/{id}/show','PlaylistController@show')->name('mypage.show');
 
 Route::post('/playlists','PlaylistController@store')->name('playlists.store');
 Route::get('/playlists','PlaylistController@index')->name('playlists.index');
 Route::post('/playlists/{id}','PlaylistController@update')->name('playlists.update');
-Route::post('/playlists/delete/{id}','PlaylistController@destroy')->name('playlists.delete');
+Route::post('/playlists/{id}/delete','PlaylistController@destroy')->name('playlists.delete');
+
+Route::post('/comments','CommentController@store')->name('comments.store');
+Route::get('/comments/{id}/show','CommentController@show')->name('comments.show');
+Route::get('/comments/{id}/commentAjax','CommentController@commentAjax')->name('comments.Ajax ');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
