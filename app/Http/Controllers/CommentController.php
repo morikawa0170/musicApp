@@ -45,11 +45,12 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         Comment::find($id)->delete();
+        $playlist = Playlist::find($request->playlist_id);
 
-        return redirect()->route('comments.show',$id);
+        return redirect()->route('comments.show',$playlist);
     }
 
     public function commentAjax($id)

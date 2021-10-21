@@ -22,6 +22,7 @@
          ajax.addEventListener("load", function(){ // loadイベントを登録します。
             var msg = document.getElementById("chat");
             var json = this.response;
+            msg.innerHTML = "";
             for(var i = json.length-1; i >= 0; i--) {
                var str = json[i].created_at;
                var replace = str.replace('T',' ');
@@ -29,13 +30,13 @@
                var name = json[i].name;
                var comment = json[i].comment;
                var id = json[i].id;
-               var form = '<form action="{{ route('comments.delete', $playlist->id) }}" method="post">'
+               var form = '<form action="/comments/'+id+'/delete" method="post">'
                            +"<input type='submit' class='btn btn-link' value='削除' onClick='return delCheck()'>"
                            +"<input type='hidden' name='id' value='"+ id +"'>"
-                           +"<input type='hidden' name='title' value="+ "{{ $playlist->id }}" +">"
+                           +"<input type='hidden' name='playlist_id' value="+ "{{ $playlist->id }}" +">"
                            +"<input type='hidden' name='_token' value='{{ csrf_token() }}'>"
                            +"</form>";
-               var myPost=    "<div class='card mb-2 mt-3 w-75 mx-auto'>" 
+               var myPost= "<div class='card mb-2 mt-3 w-75 mx-auto'>" 
                                  +"<div class='card-body pl-5 pb-1 d-flex bd-highlight'>" 
                                     +'<p class="mr-auto p-1 bd-highlight">'+comment +'</p>'
                                     +'<p class="p-1 bd-highlight">'+ name +' /</p>'
@@ -58,8 +59,8 @@
             }
          }, false);
       }
-      // var handle = setInterval(recvAJAX, 200);
-      var handle = recvAJAX();
+      var handle = setInterval(recvAJAX,500);
+
       function delCheck(){
          var result = confirm('本当に削除してよろしいですか？');
          if(result == false){

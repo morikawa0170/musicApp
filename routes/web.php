@@ -25,9 +25,9 @@ Route::post('/playlists/{id}','PlaylistController@update')->name('playlists.upda
 Route::post('/playlists/{id}/delete','PlaylistController@destroy')->name('playlists.delete');
 
 Route::post('/comments','CommentController@store')->name('comments.store');
-Route::get('/comments/{id}/show','CommentController@show')->name('comments.show');
-Route::get('/comments/{id}/commentAjax','CommentController@commentAjax')->name('comments.Ajax');
 Route::post('/comments/{id}/delete','CommentController@destroy')->name('comments.delete');
+Route::get('/comments/{playlist}/show','CommentController@show')->name('comments.show');
+Route::get('/comments/{id}/commentAjax','CommentController@commentAjax')->name('comments.Ajax');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
